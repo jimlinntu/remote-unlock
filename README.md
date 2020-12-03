@@ -1,7 +1,7 @@
 # Remote Unlock
 
 ## Use case
-* If you install Ubuntu 20.04 server, you can choose to lock your disk by a password. However, this will let OpenSSH server run only after the disk being decrypted. Therefore, this repo will demonstrate how to enable a SSH server by Dropbear even if your disk is still encrypted.
+* If you install Ubuntu 20.04 server, you can choose to lock your disk by a password. However, this will let OpenSSH server run only after the disk being decrypted. Therefore, this repo will demonstrate how to enable an SSH server by Dropbear even if your disk is still encrypted.
 
 ## Environment
 * `uname -a`:
@@ -24,6 +24,6 @@ Codename:	focal
 * You are good to go!
 
 ## References
-* <https://unix.stackexchange.com/questions/411945/luks-ssh-unlock-strange-behaviour-invalid-authorized-keys-file>: The most useful
+* <https://unix.stackexchange.com/questions/411945/luks-ssh-unlock-strange-behaviour-invalid-authorized-keys-file>: The most useful one
 * <https://unix.stackexchange.com/questions/5017/ssh-to-decrypt-encrypted-lvm-during-headless-server-boot>
 * <https://stinkyparkia.wordpress.com/2014/10/14/remote-unlocking-luks-encrypted-lvm-using-dropbear-ssh-in-ubuntu-server-14-04-1-with-static-ipst/>
