@@ -26,7 +26,7 @@ Codename:	focal
 
 (Client side)
 * `ssh -i ~/.ssh/id_rsa <your host>`
-* `crypt-unlock`: this will prompt you to type your password for decrypting the disk.
+* `cryptroot-unlock`: this will prompt you to type your password for decrypting the disk.
 
 ## References
 * <https://unix.stackexchange.com/questions/411945/luks-ssh-unlock-strange-behaviour-invalid-authorized-keys-file>: The most useful one
