@@ -18,10 +18,15 @@ Codename:	focal
 ```
 
 ## Installation
+(Server side)
 * `apt-get install dropbear`: From my experience, by install this, `dropbear` and `dropbear-initramfs` will also be installed.
 * Add your `id_rsa.pub` to `/etc/dropbear-initramfs/authorized_keys` (i.e. `cat id_rsa.pub >> /etc/dropbear-initramfs/authorized_keys`)
 * `update-initramfs -u`
 * You are good to go!
+
+(Client side)
+* `ssh -i ~/.ssh/id_rsa <your host>`
+* `crypt-unlock`: this will prompt you to type your password for decrypting the disk.
 
 ## References
 * <https://unix.stackexchange.com/questions/411945/luks-ssh-unlock-strange-behaviour-invalid-authorized-keys-file>: The most useful one
