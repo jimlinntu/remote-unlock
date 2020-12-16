@@ -24,6 +24,16 @@ Codename:	focal
 * `update-initramfs -u`
 * You are good to go!
 
+If you want to set a static ip with a gateway:
+* add line like this in `/etc/initramfs-tools/initramfs.conf`:
+```
+IP=192.168.11.111::192.168.11.254:255.255.255.0::eth0:off
+
+```
+* Note the `IP` format is: `IP=<client-ip>:<server-ip>:<gw-ip>:<netmask>:<hostname>:<device>:<autoconf>`
+   <dns0-ip>:<dns1-ip>:<ntp0-ip>
+* Remember to update the initramfs: `update-initramfs -u`
+
 (Client side)
 * `ssh -i ~/.ssh/id_rsa <your host>`
 * `cryptroot-unlock`: this will prompt you to type your password for decrypting the disk.
@@ -32,3 +42,7 @@ Codename:	focal
 * <https://unix.stackexchange.com/questions/411945/luks-ssh-unlock-strange-behaviour-invalid-authorized-keys-file>: The most useful one
 * <https://unix.stackexchange.com/questions/5017/ssh-to-decrypt-encrypted-lvm-during-headless-server-boot>
 * <https://stinkyparkia.wordpress.com/2014/10/14/remote-unlocking-luks-encrypted-lvm-using-dropbear-ssh-in-ubuntu-server-14-04-1-with-static-ipst/>
+* `man initramfs.conf`
+* `man initramfs-tools`
+* <https://unix.stackexchange.com/questions/550021/where-is-the-documentation-for-the-ip-variable-in-initramfs-conf>
+* <https://www.eugenemdavis.com/set-static-ip-initramfs.html>
