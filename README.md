@@ -38,6 +38,12 @@ IP=192.168.11.111::192.168.11.254:255.255.255.0::eth0:off
 * `ssh -i ~/.ssh/id_rsa <your host>`
 * `cryptroot-unlock`: this will prompt you to type your password for decrypting the disk.
 
+## Troubleshooting
+* I found that after `initramfs` the `IP=` will still remain even after the boot.
+    * Check `/run/netplan/eno1.yaml`, I found that `IP` truly was added.
+    * The way to solve it is to add a script under `/etc/initramfs-tools/scripts/init-bottom/`. And add commands like: `rm -f /run/netplan/*.yml`. You will find that `IP=` will not remain after `init` ends.
+    * Remember to run `update-initramfs -u`!
+
 ## References
 * <https://unix.stackexchange.com/questions/411945/luks-ssh-unlock-strange-behaviour-invalid-authorized-keys-file>: The most useful one
 * <https://unix.stackexchange.com/questions/5017/ssh-to-decrypt-encrypted-lvm-during-headless-server-boot>
@@ -46,3 +52,5 @@ IP=192.168.11.111::192.168.11.254:255.255.255.0::eth0:off
 * `man initramfs-tools`
 * <https://unix.stackexchange.com/questions/550021/where-is-the-documentation-for-the-ip-variable-in-initramfs-conf>
 * <https://www.eugenemdavis.com/set-static-ip-initramfs.html>
+* [What is creating /run/netplan/eth0.yaml?]( https://askubuntu.com/questions/1228433/what-is-creating-run-netplan-eth0-yaml ): `netplan` and `initramfs-tools`
+    * Thanks for the hint. I ended up creating `/etc/initramfs-tools/scripts/init-bottom/deconfigure-interfaces` that does `rm -f /run/netplan/eth0.yaml && ip -f inet address flush dev eth0`. (I don't know if flushing the IP addresses is necessary, but it doesn't hurt.)
