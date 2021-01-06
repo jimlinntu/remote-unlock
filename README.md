@@ -41,7 +41,7 @@ IP=192.168.11.111::192.168.11.254:255.255.255.0::eth0:off
 ## Troubleshooting
 * I found that after `initramfs` the `IP=` will still remain even after the boot.
     * Check `/run/netplan/eno1.yaml`, I found that `IP` truly was added.
-    * The way to solve it is to add a script under `/etc/initramfs-tools/scripts/init-bottom/`. And add commands like: `rm -f /run/netplan/*.yml`. You will find that `IP=` will not remain after `init` ends.
+    * The way to solve it is to add a script under `/etc/initramfs-tools/scripts/init-bottom/`. And add commands like: `rm -f /run/netplan/eno1.yaml`. You will find that `IP=` will not remain after `init` ends. You can see [deconfigure-interfaces](./deconfigure-interfaces)
     * Remember to run `update-initramfs -u`!
 
 ## References
